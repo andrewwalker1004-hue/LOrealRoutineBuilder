@@ -1,0 +1,242 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "brand": "CeraVe",
+      "name": "Hydrating Facial Cleanser",
+      "category": "cleanser",
+      "description": "A gentle, non-foaming cleanser for normal to dry skin. Formulated with three essential ceramides and hyaluronic acid, it removes dirt and makeup while helping restore the protective skin barrier. Fragrance-free and non-comedogenic."
+    },
+    {
+      "id": 2,
+      "brand": "CeraVe",
+      "name": "Foaming Facial Cleanser",
+      "category": "cleanser",
+      "description": "A refreshing gel-to-foam cleanser for normal to oily skin. Niacinamide, ceramides, and hyaluronic acid remove excess oil without disrupting the skin barrier. Fragrance-free and suitable for daily use."
+    },
+    {
+      "id": 3,
+      "brand": "La Roche-Posay",
+      "name": "Toleriane Hydrating Gentle Cleanser",
+      "category": "cleanser",
+      "description": "A creamy, milky face wash for sensitive, normal to dry skin. Made with prebiotic thermal water, ceramide-3, and niacinamide to cleanse while maintaining the skin's natural moisture and pH."
+    },
+    {
+      "id": 4,
+      "brand": "Garnier",
+      "name": "SkinActive Micellar Cleansing Water",
+      "category": "cleanser",
+      "description": "An all-in-one makeup remover and cleanser. Micelles act like a magnet to lift away dirt, oil, and makeup without harsh rubbing. No rinsing required, and gentle enough for sensitive skin and eyes."
+    },
+    {
+      "id": 5,
+      "brand": "CeraVe",
+      "name": "Daily Moisturizing Lotion",
+      "category": "moisturizer",
+      "description": "A lightweight, oil-free lotion that hydrates the face and body for 24 hours. Contains three essential ceramides and hyaluronic acid, delivered with MVE technology for long-lasting moisture."
+    },
+    {
+      "id": 6,
+      "brand": "CeraVe",
+      "name": "PM Facial Moisturizing Lotion",
+      "category": "moisturizer",
+      "description": "An ultra-lightweight night moisturizer with niacinamide to calm skin and improve its appearance, plus ceramides and hyaluronic acid to restore the barrier while you sleep. Oil-free and non-comedogenic."
+    },
+    {
+      "id": 7,
+      "brand": "La Roche-Posay",
+      "name": "Toleriane Double Repair Face Moisturizer",
+      "category": "moisturizer",
+      "description": "A daily face moisturizer that restores the skin barrier in one hour and provides 48-hour hydration. Formulated with prebiotic thermal water, ceramide-3, niacinamide, and glycerin. Oil-free, suitable for sensitive skin."
+    },
+    {
+      "id": 8,
+      "brand": "L'Oréal Paris",
+      "name": "Revitalift Triple Power Anti-Aging Moisturizer",
+      "category": "moisturizer",
+      "description": "An anti-aging face cream with Pro-Retinol, Vitamin C, and hyaluronic acid. Targets wrinkles, firmness, and radiance for visibly younger-looking skin. Absorbs quickly and works well under makeup."
+    },
+    {
+      "id": 9,
+      "brand": "Kiehl's",
+      "name": "Ultra Facial Cream",
+      "category": "moisturizer",
+      "description": "A lightweight daily face cream with squalane and glacial glycoprotein that provides 24-hour hydration. Suitable for all skin types, it leaves skin soft, smooth, and comfortable."
+    },
+    {
+      "id": 10,
+      "brand": "CeraVe",
+      "name": "Resurfacing Retinol Serum",
+      "category": "skincare",
+      "description": "A retinol serum that helps reduce the look of post-acne marks and enlarged pores. Encapsulated retinol, licorice root extract, and niacinamide brighten and smooth skin texture. Use in the evening."
+    },
+    {
+      "id": 11,
+      "brand": "L'Oréal Paris",
+      "name": "Revitalift 1.5% Pure Hyaluronic Acid Serum",
+      "category": "skincare",
+      "description": "A lightweight, fast-absorbing serum that replumps skin with intense hydration. Pure hyaluronic acid visibly reduces wrinkles and leaves skin smooth. Fragrance-free and suitable for morning and night."
+    },
+    {
+      "id": 12,
+      "brand": "Lancôme",
+      "name": "Advanced Génifique Face Serum",
+      "category": "skincare",
+      "description": "Lancôme's iconic serum, formulated with seven pre- and probiotic fractions and hyaluronic acid to strengthen the skin's moisture barrier. Skin looks more radiant and resilient in just seven days."
+    },
+    {
+      "id": 13,
+      "brand": "La Roche-Posay",
+      "name": "Effaclar Duo Dual Action Acne Treatment",
+      "category": "skincare",
+      "description": "An oil-free acne spot treatment with 5.5% micronized benzoyl peroxide and LHA. Clears acne breakouts and helps prevent new blemishes while being gentle on sensitive skin."
+    },
+    {
+      "id": 14,
+      "brand": "Vichy",
+      "name": "Minéral 89 Hyaluronic Acid Face Serum",
+      "category": "skincare",
+      "description": "A daily booster with 89% Vichy volcanic water and natural-origin hyaluronic acid. Strengthens and plumps skin for a healthy-looking glow. Lightweight, fragrance-free, and suitable for sensitive skin."
+    },
+    {
+      "id": 15,
+      "brand": "SkinCeuticals",
+      "name": "C E Ferulic",
+      "category": "skincare",
+      "description": "A daytime vitamin C serum with 15% pure L-ascorbic acid, 1% vitamin E, and 0.5% ferulic acid. Provides advanced environmental protection and improves the look of fine lines, firmness, and brightness."
+    },
+    {
+      "id": 16,
+      "brand": "La Roche-Posay",
+      "name": "Anthelios Melt-in Milk Sunscreen SPF 60",
+      "category": "suncare",
+      "description": "A broad-spectrum SPF 60 sunscreen for face and body with Cell-Ox Shield technology. Fast-absorbing, velvety texture that is water-resistant for 80 minutes. Suitable for sensitive skin."
+    },
+    {
+      "id": 17,
+      "brand": "CeraVe",
+      "name": "AM Facial Moisturizing Lotion SPF 30",
+      "category": "suncare",
+      "description": "A daytime moisturizer with broad-spectrum SPF 30 mineral and chemical sunscreen. Ceramides, niacinamide, and hyaluronic acid hydrate and calm while protecting against UV damage."
+    },
+    {
+      "id": 18,
+      "brand": "Garnier",
+      "name": "Ambre Solaire Super UV Invisible Serum SPF 50+",
+      "category": "suncare",
+      "description": "A weightless face sunscreen serum with very high UVA/UVB protection. Leaves no white cast and works as a primer under makeup. Enriched with niacinamide and vitamin E."
+    },
+    {
+      "id": 19,
+      "brand": "Kérastase",
+      "name": "Elixir Ultime L'Huile Originale Hair Oil",
+      "category": "haircare",
+      "description": "A luxurious hair oil infused with marula and camellia oils that adds shine, tames frizz, and protects against heat up to 230°C. Suitable for all hair types; use on damp or dry hair."
+    },
+    {
+      "id": 20,
+      "brand": "Redken",
+      "name": "Acidic Bonding Concentrate Shampoo",
+      "category": "haircare",
+      "description": "A sulfate-free shampoo for damaged, chemically treated hair. Citric acid and bond-building care strengthen and repair hair bonds for stronger, shinier, more manageable hair."
+    },
+    {
+      "id": 21,
+      "brand": "L'Oréal Paris",
+      "name": "Elvive Dream Lengths Conditioner",
+      "category": "haircare",
+      "description": "A conditioner for long, damaged hair. Made with castor oil and vitamins to detangle, strengthen, and seal split ends for smooth, healthy-looking lengths."
+    },
+    {
+      "id": 22,
+      "brand": "Garnier",
+      "name": "Fructis Hair Filler Moisture Repair Treatment",
+      "category": "haircare",
+      "description": "A leave-in treatment with hyaluronic acid that fills and repairs dry, damaged hair. Leaves hair softer, smoother, and more hydrated without weighing it down."
+    },
+    {
+      "id": 23,
+      "brand": "L'Oréal Paris",
+      "name": "Excellence Crème Permanent Hair Color",
+      "category": "hair color",
+      "description": "Permanent at-home hair color with triple care protection and 100% gray coverage. Includes a pre-color protecting serum and a conditioner for rich, long-lasting, multi-tonal color."
+    },
+    {
+      "id": 24,
+      "brand": "Garnier",
+      "name": "Nutrisse Nourishing Color Creme",
+      "category": "hair color",
+      "description": "Permanent hair color nourished with a blend of fruit oils (avocado, olive, and shea) for intense, radiant color and soft, healthy-looking hair with full gray coverage."
+    },
+    {
+      "id": 25,
+      "brand": "Maybelline New York",
+      "name": "Fit Me Matte + Poreless Foundation",
+      "category": "makeup",
+      "description": "A lightweight liquid foundation for normal to oily skin that refines pores and controls shine for a natural, seamless matte finish. Available in a wide range of shades."
+    },
+    {
+      "id": 26,
+      "brand": "Maybelline New York",
+      "name": "Lash Sensational Sky High Mascara",
+      "category": "makeup",
+      "description": "A lengthening and volumizing mascara infused with bamboo extract and fibers. The flex tower brush bends to volumize and extend every single lash from root to tip."
+    },
+    {
+      "id": 27,
+      "brand": "L'Oréal Paris",
+      "name": "True Match Super-Blendable Foundation",
+      "category": "makeup",
+      "description": "A medium-coverage foundation that precisely matches skin tone and texture. Lightweight, breathable formula with hyaluronic acid for a natural, skin-like finish."
+    },
+    {
+      "id": 28,
+      "brand": "Lancôme",
+      "name": "Teint Idole Ultra Wear Foundation",
+      "category": "makeup",
+      "description": "A long-wear, full-coverage foundation that lasts up to 24 hours. Breathable, transfer-resistant, and sweat-resistant with a natural matte finish."
+    },
+    {
+      "id": 29,
+      "brand": "Urban Decay",
+      "name": "All Nighter Setting Spray",
+      "category": "makeup",
+      "description": "An award-winning makeup setting spray with Temperature Control Technology. Keeps makeup looking fresh for up to 16 hours without melting, fading, or settling into fine lines."
+    },
+    {
+      "id": 30,
+      "brand": "L'Oréal Paris",
+      "name": "Men Expert Hydra Energetic Daily Moisturizer",
+      "category": "men's grooming",
+      "description": "A daily face moisturizer for men with caffeine and vitamin C that fights signs of fatigue and leaves skin hydrated and refreshed. Non-greasy and fast-absorbing."
+    },
+    {
+      "id": 31,
+      "brand": "Kiehl's",
+      "name": "Facial Fuel Energizing Face Wash",
+      "category": "men's grooming",
+      "description": "An energizing gel face wash for men with caffeine, menthol, and vitamin E. Cleanses dull, tired skin and removes excess oil for a refreshed look."
+    },
+    {
+      "id": 32,
+      "brand": "Yves Saint Laurent",
+      "name": "Libre Eau de Parfum",
+      "category": "fragrance",
+      "description": "A floral lavender fragrance blending French lavender essence with Moroccan orange blossom and a warm vanilla and musk base. Bold, free, and long-lasting."
+    },
+    {
+      "id": 33,
+      "brand": "Giorgio Armani",
+      "name": "Acqua di Giò Eau de Parfum",
+      "category": "fragrance",
+      "description": "A fresh aquatic fragrance with notes of marine accord, bergamot, clary sage, and patchouli. Inspired by the sea, sun, and Mediterranean nature."
+    },
+    {
+      "id": 34,
+      "brand": "Lancôme",
+      "name": "La Vie Est Belle Eau de Parfum",
+      "category": "fragrance",
+      "description": "A sweet gourmand fragrance with iris, patchouli, and vanilla notes. An iconic signature scent celebrating the joy of life."
+    }
+  ]
+}
