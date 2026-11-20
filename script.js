@@ -7,7 +7,7 @@
 
 /* 👉 Paste your deployed Cloudflare Worker URL here.
    The OpenAI API key lives ONLY in the Worker (as a secret), never in this file. */
-const WORKER_URL = "https://loreal-routine-worker.YOUR-SUBDOMAIN.workers.dev/";
+const WORKER_URL = "https://loreal-routine-worker.awalker-dev.workers.dev/";
 
 const STORAGE_KEYS = {
   selected: "loreal-selected-products",
