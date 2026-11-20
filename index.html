@@ -5,79 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>L'Oréal Routine Builder</title>
   <meta name="description" content="Browse L'Oréal products, select your favorites, and get an AI-generated personalized beauty routine." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <a class="skip-link" href="#chatWindow">Skip to chat</a>
-
+  <!-- Header -->
   <header class="site-header">
-    <div class="header-inner">
-      <div class="brand">
-        <span class="logo" aria-label="L'Oréal">L'ORÉAL</span>
-        <span class="logo-sub">PARIS</span>
-      </div>
-      <h1 class="site-title">Smart Routine Builder</h1>
-      <button id="dirToggle" class="dir-toggle" type="button" aria-pressed="false" title="Switch text direction (for Arabic, Hebrew, etc.)">
-        <span aria-hidden="true">⇄</span> <span id="dirLabel">RTL</span>
-      </button>
-    </div>
+    <button id="dirToggle" class="dir-toggle" type="button" aria-pressed="false" title="Switch text direction (for Arabic, Hebrew, etc.)">
+      <i class="fa-solid fa-language" aria-hidden="true"></i> <span id="dirLabel">RTL</span>
+    </button>
+    <img src="img/loreal-logo.png" alt="L'Oréal" class="logo" />
+    <h1 class="site-title">Routine Builder</h1>
   </header>
 
   <main class="page">
-    <!-- Intro -->
-    <section class="intro">
-      <p class="eyebrow">Because you're worth it</p>
-      <h2>Build your personalized beauty routine</h2>
-      <p>Pick the products you love from the L'Oréal family of brands, then let our AI beauty advisor build a step-by-step routine and answer your questions.</p>
-    </section>
-
-    <!-- Filters -->
-    <section class="filters" aria-label="Product filters">
-      <div class="search-wrap">
+    <!-- Search + category -->
+    <section class="search-section" aria-label="Product filters">
+      <div class="search-field">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
         <label for="productSearch" class="visually-hidden">Search products</label>
-        <span class="search-icon" aria-hidden="true">⌕</span>
-        <input id="productSearch" type="search" placeholder="Search by name, brand, or keyword (e.g. retinol)" autocomplete="off" />
+        <input id="productSearch" type="search" placeholder="Search products..." autocomplete="off" />
       </div>
-      <label for="categoryFilter" class="visually-hidden">Filter by category</label>
-      <select id="categoryFilter">
-        <option value="all">All categories</option>
-        <option value="cleanser">Cleansers</option>
-        <option value="moisturizer">Moisturizers &amp; Treatments</option>
-        <option value="skincare">Serums &amp; Skincare</option>
-        <option value="suncare">Sun Care</option>
-        <option value="haircare">Hair Care</option>
-        <option value="hair color">Hair Color</option>
-        <option value="makeup">Makeup</option>
-        <option value="men's grooming">Men's Grooming</option>
-        <option value="fragrance">Fragrance</option>
-      </select>
+      <div class="category-field">
+        <i class="fa-solid fa-filter" aria-hidden="true"></i>
+        <label for="categoryFilter" class="visually-hidden">Filter by category</label>
+        <select id="categoryFilter">
+          <option value="all">All Categories</option>
+          <option value="cleanser">Cleansers</option>
+          <option value="moisturizer">Moisturizers &amp; Treatments</option>
+          <option value="skincare">Skincare</option>
+          <option value="suncare">Suncare</option>
+          <option value="haircare">Haircare</option>
+          <option value="hair color">Hair Color</option>
+          <option value="hair styling">Hair Styling</option>
+          <option value="makeup">Makeup</option>
+          <option value="men's grooming">Men's Grooming</option>
+          <option value="fragrance">Fragrance</option>
+        </select>
+      </div>
     </section>
-
-    <p id="resultCount" class="result-count" aria-live="polite"></p>
 
     <!-- Products -->
-    <section id="productsContainer" class="products-grid" aria-label="Products"></section>
+    <section id="productsContainer" class="products-grid" aria-label="Products" aria-live="polite"></section>
+    <button id="showMore" class="show-more" type="button" hidden>Show More Products</button>
 
     <!-- Selected products -->
     <section class="selected-products" aria-labelledby="selectedHeading">
       <div class="selected-header">
-        <h2 id="selectedHeading">Selected Products <span id="selectedCount" class="count-badge">0</span></h2>
-        <button id="clearSelections" class="text-btn" type="button">Clear all</button>
+        <h2 id="selectedHeading">Selected Products <span id="selectedCount" class="count">(0)</span></h2>
+        <button id="clearSelections" class="clear-btn" type="button">Clear all</button>
       </div>
       <ul id="selectedProductsList" class="selected-list"></ul>
       <button id="generateRoutine" class="generate-btn" type="button">
-        <span aria-hidden="true">✦</span> Generate Routine
+        <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Generate Routine
       </button>
     </section>
 
     <!-- Chat -->
     <section class="chatbox" aria-labelledby="chatHeading">
       <div class="chat-header">
-        <h2 id="chatHeading">Let's Build Your Routine</h2>
-        <label class="toggle">
+        <div>
+          <h2 id="chatHeading">About Your Routine</h2>
+          <p class="chat-sub">Get personalized advice and answers about your skincare routine</p>
+        </div>
+        <label class="web-toggle" title="Let the advisor search the web for current info and cite sources">
           <input type="checkbox" id="webSearchToggle" checked />
           <span>Web search</span>
         </label>
@@ -85,21 +76,23 @@
       <div id="chatWindow" class="chat-window" role="log" aria-live="polite" tabindex="0"></div>
       <form id="chatForm" class="chat-form">
         <label for="userInput" class="visually-hidden">Message</label>
-        <input id="userInput" name="userInput" type="text" placeholder="Ask about your routine, skincare, haircare, makeup…" autocomplete="off" required />
+        <input id="userInput" name="userInput" type="text" placeholder="Ask about your routine..." autocomplete="off" required />
         <button id="sendBtn" type="submit" aria-label="Send message">
-          <span aria-hidden="true">➤</span>
+          <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
         </button>
       </form>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>&copy; 2026 L'Oréal. All rights reserved. Student project — not affiliated with L'Oréal.</p>
-    <nav aria-label="Footer">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Use</a>
-      <a href="#">Contact</a>
-    </nav>
+    <div class="footer-inner">
+      <p>&copy; 2026 L'Oréal. All rights reserved.</p>
+      <nav aria-label="Footer">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
   </footer>
 
   <script src="script.js"></script>

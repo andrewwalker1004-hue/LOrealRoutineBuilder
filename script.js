@@ -18,7 +18,7 @@ const STORAGE_KEYS = {
 const productsContainer = document.getElementById("productsContainer");
 const categoryFilter = document.getElementById("categoryFilter");
 const productSearch = document.getElementById("productSearch");
-const resultCount = document.getElementById("resultCount");
+const showMoreBtn = document.getElementById("showMore");
 const selectedList = document.getElementById("selectedProductsList");
 const selectedCount = document.getElementById("selectedCount");
 const clearBtn = document.getElementById("clearSelections");
@@ -35,6 +35,8 @@ const dirLabel = document.getElementById("dirLabel");
 let allProducts = [];
 let selectedIds = new Set(loadSelectedIds());
 let isLoading = false;
+let showAll = false; // "Show More Products" state
+const INITIAL_COUNT = 6;
 
 /* Full conversation history (user + assistant turns) so follow-ups keep context.
    The system prompt is rebuilt on every request so it always reflects the
@@ -68,16 +70,6 @@ function escapeHTML(str) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
-}
-
-function categoryClass(category) {
-  return "cat-" + category.toLowerCase().replace(/'/g, "").replace(/\s+/g, "-");
-}
-
-function monogram(brand) {
-  const words = brand.replace(/['’]/g, "").split(/[\s-]+/).filter(Boolean);
-  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
-  return (words[0][0] + words[1][0]).toUpperCase();
 }
 
 function getSelectedProducts() {
@@ -176,59 +168,64 @@ function getFilteredProducts() {
 function renderProducts() {
   const products = getFilteredProducts();
 
-  resultCount.textContent = `Showing ${products.length} of ${allProducts.length} products`;
-
   if (!products.length) {
     productsContainer.innerHTML = `<div class="placeholder-message">No products match your search. Try a different keyword or category.</div>`;
+    showMoreBtn.hidden = true;
     return;
   }
 
-  productsContainer.innerHTML = products
+  const visible = showAll ? products : products.slice(0, INITIAL_COUNT);
+  showMoreBtn.hidden = products.length <= INITIAL_COUNT;
+  showMoreBtn.textContent = showAll
+    ? "Show Fewer Products"
+    : `Show More Products (${products.length - INITIAL_COUNT})`;
+
+  productsContainer.innerHTML = visible
     .map((p) => {
       const isSelected = selectedIds.has(p.id);
       const descId = `desc-${p.id}`;
       return `
       <article class="product-card ${isSelected ? "selected" : ""}" data-id="${p.id}">
-        <span class="check-badge" aria-hidden="true">✓</span>
-        <div class="product-visual ${categoryClass(p.category)}" aria-hidden="true">
-          <span class="monogram">${escapeHTML(monogram(p.brand))}</span>
-          <span class="cat-label">${escapeHTML(p.category)}</span>
-        </div>
-        <div class="product-info">
-          <span class="product-brand">${escapeHTML(p.brand)}</span>
-          <h3 class="product-name">${escapeHTML(p.name)}</h3>
-          <p class="product-description" id="${descId}" hidden>${escapeHTML(p.description)}</p>
-          <div class="card-actions">
-            <button type="button" class="select-btn" aria-pressed="${isSelected}">
-              ${isSelected ? "✓ Selected" : "+ Select"}
-            </button>
-            <button type="button" class="details-btn" aria-expanded="false" aria-controls="${descId}">
-              Details
-            </button>
-          </div>
-        </div>
+        <span class="check-badge" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
+        <button type="button" class="product-main" aria-pressed="${isSelected}"
+          aria-label="${escapeHTML(`${p.brand} ${p.name}`)}${isSelected ? " (selected)" : ""}">
+          <img src="${escapeHTML(p.image)}" alt="" loading="lazy" />
+          <span class="product-text">
+            <span class="product-brand">${escapeHTML(p.brand)}</span>
+            <span class="product-name">${escapeHTML(p.name)}</span>
+          </span>
+        </button>
+        <button type="button" class="details-btn" aria-expanded="false" aria-controls="${descId}"
+          aria-label="Show description for ${escapeHTML(p.name)}" title="Product details">
+          <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+        </button>
+        <p class="product-description" id="${descId}" hidden>${escapeHTML(p.description)}</p>
       </article>`;
     })
     .join("");
 }
+
+showMoreBtn.addEventListener("click", () => {
+  showAll = !showAll;
+  renderProducts();
+});
 
 /* One delegated click handler for every card */
 productsContainer.addEventListener("click", (e) => {
   const card = e.target.closest(".product-card");
   if (!card) return;
 
-  // Details button reveals/hides the description without selecting
+  // Info button reveals/hides the description without selecting
   const detailsBtn = e.target.closest(".details-btn");
   if (detailsBtn) {
     const desc = card.querySelector(".product-description");
     const expanded = detailsBtn.getAttribute("aria-expanded") === "true";
     detailsBtn.setAttribute("aria-expanded", String(!expanded));
-    detailsBtn.textContent = expanded ? "Details" : "Hide";
     desc.hidden = expanded;
     return;
   }
 
-  // Clicking anywhere else on the card (or the Select button) toggles selection
+  // Clicking anywhere else on the card toggles selection
   if (e.target.closest(".product-description")) return; // allow reading/copying text
   toggleProduct(Number(card.dataset.id));
 });
@@ -247,9 +244,10 @@ function updateCardState(id) {
   if (!card) return;
   const isSelected = selectedIds.has(id);
   card.classList.toggle("selected", isSelected);
-  const btn = card.querySelector(".select-btn");
+  const btn = card.querySelector(".product-main");
   btn.setAttribute("aria-pressed", String(isSelected));
-  btn.textContent = isSelected ? "✓ Selected" : "+ Select";
+  const p = allProducts.find((x) => x.id === id);
+  btn.setAttribute("aria-label", `${p.brand} ${p.name}${isSelected ? " (selected)" : ""}`);
 }
 
 /* =========================================================
@@ -257,7 +255,7 @@ function updateCardState(id) {
    ========================================================= */
 function renderSelected() {
   const selected = getSelectedProducts();
-  selectedCount.textContent = selected.length;
+  selectedCount.textContent = `(${selected.length})`;
   clearBtn.disabled = selected.length === 0;
   generateBtn.disabled = selected.length === 0 || isLoading;
 
@@ -270,8 +268,11 @@ function renderSelected() {
     .map(
       (p) => `
       <li class="selected-chip">
-        <span><span class="chip-brand">${escapeHTML(p.brand)}</span> · ${escapeHTML(p.name)}</span>
-        <button type="button" class="remove-btn" data-id="${p.id}" aria-label="Remove ${escapeHTML(p.name)}">×</button>
+        <img src="${escapeHTML(p.image)}" alt="" />
+        <span><strong>${escapeHTML(p.brand)}</strong> ${escapeHTML(p.name)}</span>
+        <button type="button" class="remove-btn" data-id="${p.id}" aria-label="Remove ${escapeHTML(p.name)}">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
       </li>`
     )
     .join("");
@@ -291,8 +292,12 @@ clearBtn.addEventListener("click", () => {
 });
 
 /* Filters */
-categoryFilter.addEventListener("change", renderProducts);
-productSearch.addEventListener("input", renderProducts);
+function onFilterChange() {
+  showAll = false;
+  renderProducts();
+}
+categoryFilter.addEventListener("change", onFilterChange);
+productSearch.addEventListener("input", onFilterChange);
 
 /* =========================================================
    Chat + AI
